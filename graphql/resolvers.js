@@ -1,13 +1,12 @@
-const tony = {
-    name: "tony",
-    age: "30",
-    gender: "male"
-}
+import { people, getById } from "./db";
 
 const resolvers = {
     Query: {
-        person: () => tony // 여기서 하고 싶은대로 할 수 있음
-        // 다른 db로 가서 가져오든, 다른 api에서 가져오든 등등
+        people: () => people,
+        person: (_, {id}) => { // _, args
+            // console.log("args:", args); // {id : 1}
+            return getById(id);
+        }
     }
 }
 
